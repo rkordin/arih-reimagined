@@ -1,0 +1,100 @@
+.extras {
+  padding: 0 var(--grid-margin);
+  margin-top: var(--spacing-big);
+  margin-bottom: var(--spacing-big);
+}
+
+.title {
+  font-family: "LocomotiveNew", sans-serif;
+  font-size: var(--font-size-h1);
+  line-height: 1.1;
+  margin-bottom: var(--spacing-medium);
+  display: flex;
+  align-items: baseline;
+  gap: 0.15em;
+}
+.count {
+  font-family: "LocomotiveNew", monospace;
+  font-variant-numeric: tabular-nums;
+  opacity: 0.5;
+}
+.olCount {
+  font-family: "LocomotiveNew", monospace;
+  font-variant-numeric: tabular-nums;
+  opacity: 0.5;
+  font-size: 0.7em;
+  margin-left: 0.4em;
+}
+
+/* List row layout with rotating № prefix + arrow */
+.row {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  font-size: var(--font-size-medium);
+  line-height: 1.25;
+}
+.numCol {
+  flex-shrink: 0;
+  width: 64px;
+  font-family: "LocomotiveNew", monospace;
+  font-variant-numeric: tabular-nums;
+  font-size: 14px;
+  letter-spacing: 0.05em;
+  opacity: 0.55;
+}
+.linkMain {
+  flex-grow: 1;
+}
+.yearCol {
+  flex-shrink: 0;
+  width: 64px;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  opacity: 0.55;
+  font-size: 14px;
+}
+
+.studioContent {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-medium);
+}
+.studioPara {
+  font-size: var(--font-size-medium);
+  line-height: 1.25;
+  max-width: 60ch;
+}
+
+.studioStats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--grid-gutter);
+  border-top: var(--border);
+  padding-top: var(--spacing-small);
+}
+.studioStats > div {
+  display: flex;
+  flex-direction: column;
+}
+.statN {
+  font-family: "LocomotiveNew", sans-serif;
+  font-size: 56px;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+.studioStats > div > span:last-child {
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-top: 6px;
+  opacity: 0.6;
+}
+
+@media (max-width: 699px) {
+  .row { gap: 8px; }
+  .numCol { width: 48px; font-size: 11px; }
+  .yearCol { width: 48px; font-size: 11px; }
+  .studioStats { grid-template-columns: 1fr 1fr; gap: var(--spacing-tiny); }
+  .statN { font-size: 42px; }
+}

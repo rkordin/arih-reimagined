@@ -1,0 +1,261 @@
+.wrap {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: var(--spacing-large);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-medium);
+}
+
+.stepNav {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border: var(--border);
+}
+.stepItem {
+  padding: 0.7em 0.9em;
+  border-right: var(--border);
+  display: flex;
+  align-items: baseline;
+  gap: 0.4em;
+  opacity: 0.5;
+  transition: opacity 0.2s ease, background 0.2s ease;
+}
+.stepItem:last-child { border-right: none; }
+.stepCurrent { opacity: 1; background: #111; color: #fff; }
+.stepDone { opacity: 0.85; }
+.stepNum {
+  font-family: "LocomotiveNew", monospace;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  opacity: 0.6;
+}
+.stepLabel {
+  font-family: "LocomotiveNew", sans-serif;
+  font-size: 1.1rem;
+}
+
+.progress {
+  height: 4px;
+  background: #eee;
+  position: relative;
+  overflow: hidden;
+}
+.progressFill {
+  position: absolute;
+  inset: 0;
+  background: #111;
+  transition: width 0.35s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.fieldset {
+  border: var(--border);
+  padding: var(--spacing-medium);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-small);
+  background: var(--color-bg);
+}
+.legend {
+  font-family: "LocomotiveNew", sans-serif;
+  font-size: 2.2rem;
+  line-height: 1;
+  letter-spacing: -0.01em;
+  padding: 0 0.4em;
+}
+
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border: var(--border);
+}
+.option {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 12px;
+  align-items: center;
+  padding: 0.9em 1em;
+  border-bottom: 1px solid #e8e6e0;
+  cursor: pointer;
+  transition: background 0.18s ease;
+}
+.option:last-child { border-bottom: none; }
+.option:hover { background: #faf8f3; }
+.option input { accent-color: #111; }
+.optLabel {
+  font-family: "LocomotiveNew", sans-serif;
+  font-size: 1.3rem;
+}
+.optMeta {
+  font-family: "LocomotiveNew", monospace;
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  opacity: 0.6;
+}
+.optionActive { background: #f5f3ee; }
+
+.qty {
+  display: inline-flex;
+  align-items: center;
+  border: var(--border);
+}
+.qty input {
+  width: 80px;
+  height: 56px;
+  text-align: center;
+  border: none;
+  border-left: var(--border);
+  border-right: var(--border);
+  font-family: "LocomotiveNew", monospace;
+  font-size: 1.8rem;
+  background: transparent;
+}
+.qtyBtn {
+  width: 56px;
+  height: 56px;
+  background: transparent;
+  border: 0;
+  font-size: 1.4rem;
+  cursor: pointer;
+}
+.qtyBtn:hover { background: #f5f3ee; }
+
+.fields {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-tiny);
+}
+.field { display: flex; flex-direction: column; gap: 6px; }
+.field span {
+  font-family: "LocomotiveNew", monospace;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  opacity: 0.6;
+}
+.field input,
+.field textarea {
+  font-family: inherit;
+  font-size: var(--font-size-medium);
+  padding: 0.7em 0.8em;
+  border: var(--border);
+  background: transparent;
+}
+.fieldWide { grid-column: 1 / -1; }
+.fieldCheck {
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  grid-column: 1 / -1;
+}
+.fieldCheck span { text-transform: none; letter-spacing: 0; opacity: 0.85; font-size: var(--font-size); }
+.fieldCheck input { width: auto; }
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: var(--spacing-tiny);
+}
+.btn,
+.btnGhost {
+  font-family: "LocomotiveNew", monospace;
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding: 0.95em 1.4em;
+  border: var(--border);
+  background: #111;
+  color: #fff;
+  cursor: pointer;
+}
+.btnGhost { background: transparent; color: var(--color); }
+.btn:hover { background: #000; }
+.btnGhost:hover { background: #f5f3ee; }
+
+.note { font-size: var(--font-size); opacity: 0.6; margin: 0; }
+
+.summary {
+  display: grid;
+  grid-template-columns: 130px 1fr;
+  gap: 0.5em 1em;
+  margin: 0;
+  font-size: var(--font-size-medium);
+}
+.summary dt {
+  font-family: "LocomotiveNew", monospace;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  opacity: 0.55;
+  padding-top: 0.3em;
+}
+.summary dd { margin: 0; }
+.summaryTotal {
+  font-family: "LocomotiveNew", sans-serif !important;
+  font-size: 1.6rem !important;
+  text-transform: none !important;
+  letter-spacing: 0 !important;
+  opacity: 1 !important;
+  padding-top: 0.6em !important;
+  border-top: var(--border);
+}
+
+.done { background: #111; color: #fff; }
+.done .legend { color: #fff; }
+.done a { color: inherit; text-decoration: underline; }
+
+/* Live total panel */
+.total {
+  position: sticky;
+  top: calc(var(--header-height) + 20px);
+  border: var(--border);
+  padding: var(--spacing-medium);
+  background: #f5f3ee;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6em;
+  font-size: 13px;
+}
+.totalRow {
+  display: flex;
+  justify-content: space-between;
+  gap: 1em;
+}
+.totalRow span:first-child {
+  font-family: "LocomotiveNew", monospace;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  opacity: 0.6;
+}
+.totalRow span:last-child {
+  font-family: "LocomotiveNew", sans-serif;
+  text-align: right;
+}
+.hr { border: none; border-top: 1px solid #ddd9d2; }
+.totalSum span:first-child {
+  font-size: 13px !important;
+  text-transform: none !important;
+  letter-spacing: 0 !important;
+  opacity: 1 !important;
+}
+.totalSum span:last-child { font-size: 1.4rem; }
+
+.dim { opacity: 0.5; font-family: "LocomotiveNew", monospace; font-size: 0.85em; }
+
+@media (max-width: 1023px) {
+  .wrap { grid-template-columns: 1fr; }
+  .fields { grid-template-columns: 1fr; }
+  .total { position: static; }
+}

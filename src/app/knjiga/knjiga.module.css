@@ -1,0 +1,274 @@
+/* HERO ============================================================== */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  background: #0f0c08;
+  color: #f5f3ee;
+  overflow: hidden;
+  padding-top: var(--header-height);
+}
+.heroStage {
+  position: relative;
+  min-height: calc(100vh - var(--header-height));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.cover {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.55;
+  filter: contrast(1.05) saturate(0.85);
+}
+.heroOverlay {
+  position: relative;
+  text-align: center;
+  padding: var(--spacing-large) var(--grid-margin);
+  mix-blend-mode: difference;
+}
+.eyebrow {
+  font-family: "LocomotiveNew", monospace;
+  font-size: var(--font-size);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  opacity: 0.7;
+  margin-bottom: var(--spacing-tiny);
+  display: block;
+}
+.bigTitle {
+  font-family: "LocomotiveNew", sans-serif;
+  font-size: clamp(64px, 16vw, 280px);
+  line-height: 0.85;
+  letter-spacing: -0.04em;
+  font-weight: 400;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.bigTitle span:nth-child(2) {
+  font-style: italic;
+  opacity: 0.85;
+  transform: translateX(8%);
+}
+.heroSub {
+  font-size: var(--font-size-medium);
+  opacity: 0.7;
+  margin: var(--spacing-medium) 0;
+  font-style: italic;
+}
+.heroCta {
+  display: inline-block;
+  font-family: "LocomotiveNew", monospace;
+  font-size: 13px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  padding: 1em 2em;
+  border: 1px solid currentColor;
+  background: transparent;
+  color: inherit;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+.heroCta:hover { background: #f5f3ee; color: #0f0c08; }
+
+.heroFooter {
+  position: absolute;
+  bottom: var(--spacing-medium);
+  left: var(--grid-margin);
+  right: var(--grid-margin);
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  font-family: "LocomotiveNew", monospace;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  opacity: 0.65;
+}
+
+/* ABOUT ============================================================== */
+.about {
+  display: grid;
+  grid-template-columns: 200px 1fr 280px;
+  gap: var(--spacing-large);
+  padding: var(--spacing-big) var(--grid-margin);
+  border-bottom: var(--border);
+}
+.aboutHead { padding-top: 0.4em; }
+.smallLabel {
+  font-family: "LocomotiveNew", monospace;
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  opacity: 0.55;
+  display: block;
+}
+.aboutBody p {
+  font-size: var(--font-size-medium);
+  line-height: 1.45;
+  margin: 0 0 1em 0;
+  max-width: 60ch;
+}
+.specs dl {
+  margin: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5em 1em;
+  font-family: "LocomotiveNew", monospace;
+  font-size: 13px;
+}
+.specs dt {
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  opacity: 0.55;
+}
+.specs dd { margin: 0; }
+
+/* SPREAD ============================================================= */
+.spread {
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+.spread img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.spread figcaption {
+  position: absolute;
+  bottom: var(--spacing-medium);
+  left: var(--grid-margin);
+  font-family: "LocomotiveNew", monospace;
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #fff;
+  text-shadow: 0 1px 8px rgba(0,0,0,0.6);
+}
+
+/* AUTHOR ============================================================= */
+.author {
+  display: grid;
+  grid-template-columns: minmax(280px, 460px) 1fr;
+  gap: var(--spacing-large);
+  padding: var(--spacing-large) var(--grid-margin) var(--spacing-big);
+  border-bottom: var(--border);
+  align-items: flex-end;
+}
+.authorPortrait {
+  position: relative;
+  aspect-ratio: 4/5;
+  overflow: hidden;
+  background: #f5f3ee;
+}
+.authorPortrait img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(1) contrast(1.05);
+}
+.authorBody {
+  padding-bottom: var(--spacing-medium);
+}
+.authorName {
+  font-family: "LocomotiveNew", sans-serif;
+  font-size: 5rem;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  font-weight: 400;
+  margin: 0.2em 0 var(--spacing-medium) 0;
+}
+.authorBody p {
+  font-size: var(--font-size-medium);
+  line-height: 1.45;
+  max-width: 60ch;
+  margin: 0 0 1em 0;
+}
+
+/* REVIEWS ============================================================ */
+.reviews {
+  padding: var(--spacing-big) var(--grid-margin);
+  background: #f5f3ee;
+  border-bottom: var(--border);
+}
+.reviewsHead {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: var(--spacing-large);
+}
+.reviewGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--spacing-large);
+}
+.review {
+  margin: 0;
+  padding: var(--spacing-medium);
+  background: var(--color-bg);
+  border: var(--border);
+  transform: rotate(-1deg);
+}
+.review:nth-child(2) { transform: rotate(1deg) translateY(-12px); }
+.review:nth-child(3) { transform: rotate(-0.5deg) translateY(6px); }
+.review p {
+  font-family: "LocomotiveNew", sans-serif;
+  font-size: 1.5rem;
+  line-height: 1.25;
+  margin: 0 0 var(--spacing-tiny) 0;
+}
+.review cite {
+  font-family: "LocomotiveNew", monospace;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  opacity: 0.6;
+  font-style: normal;
+}
+
+/* ORDER ============================================================== */
+.orderSection {
+  padding: var(--spacing-big) var(--grid-margin);
+}
+.orderHead {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: var(--spacing-large);
+  margin-bottom: var(--spacing-large);
+  align-items: baseline;
+}
+.orderTitle {
+  font-family: "LocomotiveNew", sans-serif;
+  font-size: var(--font-size-huge);
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  font-weight: 400;
+  margin: 0;
+}
+.orderNote {
+  grid-column: 2;
+  font-size: var(--font-size);
+  opacity: 0.6;
+  max-width: 60ch;
+  margin: 0.5em 0 0 0;
+}
+
+/* RESPONSIVE ========================================================= */
+@media (max-width: 1023px) {
+  .about { grid-template-columns: 1fr; gap: var(--spacing-medium); }
+  .author { grid-template-columns: 1fr; }
+  .reviewGrid { grid-template-columns: 1fr; gap: var(--spacing-medium); }
+  .review, .review:nth-child(2), .review:nth-child(3) { transform: none; }
+  .orderHead { grid-template-columns: 1fr; }
+  .orderNote { grid-column: 1; }
+  .heroFooter { flex-wrap: wrap; gap: 0.6em; }
+}
+
+@media (max-width: 699px) {
+  .authorName { font-size: 2.5rem; }
+  .orderTitle { font-size: 14vw; }
+  .heroFooter { font-size: 9px; }
+}

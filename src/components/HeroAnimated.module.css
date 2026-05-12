@@ -1,0 +1,273 @@
+/* =========================================================================
+   HeroAnimated — runtime implementation of the Higgsfield brief.
+   All keyframe percentages assume a 10s loop. 0% = 0s, 100% = 10s.
+   ========================================================================= */
+
+.hero {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 640px;
+  max-height: 900px;
+  overflow: hidden;
+  color: #fff;
+  background: #000;
+  isolation: isolate; /* contain blend modes */
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px; height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}
+
+/* ---------- L0: animated background colour ---------- */
+.bg {
+  position: absolute;
+  inset: 0;
+  background: #000;
+  z-index: 1;
+  animation: bgFlip 10s steps(1, end) infinite;
+}
+@keyframes bgFlip {
+  /* black 0–30%, crimson 30–96%, glitch flash 96–100% */
+  0%, 29.9%      { background: #000; }
+  30%, 95.9%     { background: #6b0a0a; }     /* deep crimson */
+  96%, 96.5%     { background: #b81e1e; }     /* glitch flash */
+  96.6%, 96.9%   { background: #000; }
+  97%, 100%      { background: #000; }
+}
+
+/* ---------- L1: portrait base ---------- */
+.portrait {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background-image: url("/arih/founder.jpg");
+  background-size: cover;
+  background-position: center 30%;
+  filter: grayscale(1) contrast(1.1) brightness(0.7);
+  mix-blend-mode: lighten;
+  opacity: 0.55;
+  animation: portraitTone 10s linear infinite;
+}
+@keyframes portraitTone {
+  0%, 30%   { filter: grayscale(1) contrast(1.1) brightness(0.55); opacity: 0.5; }
+  31%, 96%  { filter: grayscale(0.4) contrast(1.05) brightness(0.65) hue-rotate(-8deg); opacity: 0.4; }
+  100%      { filter: grayscale(1) contrast(1.1) brightness(0.55); opacity: 0.5; }
+}
+
+/* ---------- L2: architectural arcs (top-left) ---------- */
+.arcs {
+  position: absolute;
+  top: calc(var(--header-height) + 16px);
+  left: var(--grid-margin);
+  width: 180px;
+  height: 180px;
+  z-index: 3;
+  pointer-events: none;
+  animation: arcRotate 10s linear infinite;
+  opacity: 0.6;
+}
+@keyframes arcRotate {
+  0%   { transform: rotate(0deg); opacity: 0.7; }
+  30%  { transform: rotate(0deg); opacity: 0.7; }
+  60%  { transform: rotate(90deg); opacity: 0.4; }
+  100% { transform: rotate(90deg); opacity: 0.7; }
+}
+
+/* ---------- L3: pixel-grid projection of ARIH® onto the face ---------- */
+.pixelStage {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  animation: pixelStageMove 10s cubic-bezier(0.7, 0, 0.3, 1) infinite;
+}
+@keyframes pixelStageMove {
+  /* hold center 0–30%, slide right 30–50%, hold right 50–96%, snap back 96–100% */
+  0%, 30%   { transform: translate(0, 0) scale(1.0); }
+  50%, 95%  { transform: translate(28%, 0) scale(1.15); }
+  96%       { transform: translate(28%, 0) scale(1.15) skewX(2deg); }
+  100%      { transform: translate(0, 0) scale(1.0); }
+}
+
+.pixelText {
+  font-family: "LocomotiveNew", "Times New Roman", serif;
+  font-size: clamp(160px, 22vw, 360px);
+  font-weight: 400;
+  letter-spacing: -0.04em;
+  line-height: 0.85;
+  color: #fff;
+  text-shadow: 0 0 60px rgba(255,255,255,0.25);
+  mix-blend-mode: screen;
+  white-space: nowrap;
+}
+.reg {
+  font-size: 0.35em;
+  vertical-align: super;
+  margin-left: 0.1em;
+}
+
+/* The pixel overlay sits ON TOP of the text and reveals it through 64 cells. */
+.pixelOverlay {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  grid-template-rows: repeat(8, 1fr);
+  pointer-events: none;
+}
+.pixelCell {
+  background-color: #000;
+  animation: pixelReveal 10s linear infinite;
+}
+@keyframes pixelReveal {
+  /* opaque (hides text) until our window of resolution, then transparent */
+  0%, 9%     { opacity: 1; transform: scale(1.02); }
+  10%, 30%   { opacity: 0.85; transform: scale(1.01); }
+  /* each cell becomes transparent at its own delayed % */
+  35%, 95%   { opacity: 0; transform: scale(1.0); }
+  /* loop reset */
+  96%, 100%  { opacity: 1; transform: scale(1.02); }
+}
+
+/* ---------- L4: anchored mega-wordmark on the right ---------- */
+.wordmark {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0 var(--grid-margin);
+  z-index: 5;
+  pointer-events: none;
+  opacity: 0;
+  animation: wordmarkIn 10s cubic-bezier(0.22, 0.61, 0.36, 1) infinite;
+  font-family: "LocomotiveNew", "Times New Roman", serif;
+  color: #fff;
+  white-space: nowrap;
+}
+.wordmark span {
+  font-size: clamp(140px, 18vw, 280px);
+  line-height: 0.85;
+  letter-spacing: -0.04em;
+  transform: translateX(20%);
+}
+.wordmark sup {
+  font-size: 0.3em;
+  vertical-align: super;
+}
+@keyframes wordmarkIn {
+  0%, 30%   { opacity: 0; }
+  50%       { opacity: 1; }
+  95%       { opacity: 1; }
+  96%       { opacity: 0.6; transform: translateX(2px); }
+  97%       { opacity: 0.9; transform: translateX(-2px); }
+  98%, 100% { opacity: 0; }
+}
+
+/* ---------- L5: centered tagline (start-frame poetry) ---------- */
+.tagline {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 6;
+  pointer-events: none;
+  font-family: "HelveticaNowDisplay", monospace;
+  font-size: clamp(14px, 1.4vw, 22px);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255, 220, 150, 0.95);
+  text-shadow: 0 0 20px rgba(255, 140, 50, 0.4);
+  animation: taglineCycle 10s steps(1, end) infinite;
+}
+.tagline span {
+  display: block;
+  line-height: 1.4;
+  filter: contrast(1.2);
+}
+@keyframes taglineCycle {
+  0%, 28%   { opacity: 0.9; transform: translateY(80px); color: rgba(255, 180, 80, 0.9); }
+  30%, 50%  { opacity: 0; }
+  /* hidden during the wordmark phase */
+  95%, 100% { opacity: 0; }
+}
+
+/* ---------- L6: bottom-edge subtitle ---------- */
+.subtitle {
+  position: absolute;
+  left: var(--grid-margin);
+  right: var(--grid-margin);
+  bottom: var(--spacing-medium);
+  text-align: left;
+  font-family: "HelveticaNowDisplay", monospace;
+  font-size: clamp(11px, 0.9vw, 14px);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255, 240, 220, 0.95);
+  z-index: 7;
+  opacity: 0;
+  animation: subtitleIn 10s ease-out infinite;
+}
+@keyframes subtitleIn {
+  0%, 64%   { opacity: 0; transform: translateY(8px); }
+  72%, 95%  { opacity: 0.95; transform: translateY(0); }
+  96%, 100% { opacity: 0; }
+}
+
+/* ---------- L7: chromatic aberration overlay ---------- */
+.aberration {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 8;
+  background:
+    radial-gradient(circle at 48% 50%, transparent 30%, rgba(255,0,0,0.06) 60%, transparent 70%),
+    radial-gradient(circle at 52% 50%, transparent 30%, rgba(0,255,255,0.06) 60%, transparent 70%);
+  mix-blend-mode: screen;
+  animation: aberration 10s linear infinite;
+}
+@keyframes aberration {
+  0%, 30%    { opacity: 1; }
+  31%, 60%   { opacity: 0.5; }
+  61%, 95%   { opacity: 0; }
+  96%, 99%   { opacity: 1; transform: translateX(3px); }
+  100%       { opacity: 1; transform: translateX(0); }
+}
+
+/* ---------- L8: end-of-loop glitch flash ---------- */
+.glitch {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9;
+  opacity: 0;
+  background:
+    linear-gradient(0deg, rgba(255,0,80,0.15) 50%, transparent 50%) 0 0 / 100% 6px,
+    linear-gradient(180deg, rgba(0,200,255,0.12) 50%, transparent 50%) 0 0 / 100% 6px;
+  mix-blend-mode: screen;
+  animation: glitchPulse 10s steps(1, end) infinite;
+}
+@keyframes glitchPulse {
+  0%, 95.9%   { opacity: 0; }
+  96%, 96.4%  { opacity: 0.9; transform: translateX(8px); }
+  96.5%, 96.9% { opacity: 0.6; transform: translateX(-6px); }
+  97%, 97.4%  { opacity: 0.9; transform: translateX(4px); }
+  97.5%, 99%  { opacity: 0; }
+  100%        { opacity: 0; }
+}
+
+/* ---------- responsive ---------- */
+@media (max-width: 699px) {
+  .arcs { width: 100px; height: 100px; }
+  .wordmark span { font-size: 22vw; }
+  .pixelText { font-size: 26vw; }
+}

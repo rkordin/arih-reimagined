@@ -1,0 +1,128 @@
+.heading {
+  font-size: var(--font-size-medium);
+  line-height: 1.2;
+  padding: 0 var(--grid-margin);
+  margin: var(--spacing-medium) 0 var(--spacing-tiny);
+  display: flex;
+  align-items: baseline;
+  gap: 0.5em;
+}
+.headingCount {
+  font-family: "LocomotiveNew", monospace;
+  font-variant-numeric: tabular-nums;
+  opacity: 0.5;
+}
+
+.section {
+  padding: 0 var(--grid-margin);
+}
+
+.list {
+  border-bottom: var(--border);
+  margin-top: 7px;
+}
+
+.item {
+  position: relative;
+  border-top: var(--border);
+  display: flex;
+  align-items: center;
+  padding: 1.33333rem 0;
+  gap: 24px;
+}
+
+.badge {
+  flex-shrink: 0;
+  width: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.category {
+  flex-shrink: 0;
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  opacity: 0.6;
+  text-align: right;
+  width: 80px;
+  font-family: "HelveticaNowDisplay", sans-serif;
+}
+
+.title {
+  --transition-speed-enter: 0.45s;
+  --transition-speed-leave: 0.2s;
+  --transition-easing: cubic-bezier(0.23, 1, 0.32, 1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  line-height: 1;
+  text-align: center;
+  flex-grow: 1;
+  font-family: "LocomotiveNew", sans-serif;
+  font-size: var(--font-size-huge);
+  font-weight: 400;
+}
+.title > span {
+  display: inline-block;
+  transform: translateY(0.1em);
+}
+.title > span:nth-child(1):not(:last-child) { padding-right: 0.1em; }
+.title > span:last-child:not(:first-child) { padding-left: 0.1em; }
+
+.visual {
+  overflow: hidden;
+  vertical-align: bottom;
+  display: inline-block;
+  position: relative;
+  width: 0em;
+  height: 1em;
+  transition: width var(--transition-speed-leave) var(--transition-easing);
+  pointer-events: none;
+}
+.item:hover .visual,
+.item:focus-within .visual {
+  width: 1.5em;
+  transition-duration: var(--transition-speed-enter);
+}
+
+.visualInner {
+  display: block;
+  position: absolute;
+  inset: 0;
+  width: calc(1.5em);
+  height: 100%;
+}
+.visualInner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.link {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  font-size: 0;
+  color: transparent;
+  text-indent: -9999px;
+}
+
+.ctaItem .ctaTitle::before,
+.ctaItem .ctaTitle::after {
+  content: "○";
+  font-size: 50%;
+  animation: featuredProjectsAllFlash 1.5s linear infinite;
+  align-self: center;
+  padding: 0 0.3em;
+}
+
+@media (max-width: 699px) {
+  .category { display: none; }
+  .badge { width: 40px; }
+  .item { gap: 12px; }
+}

@@ -1,0 +1,74 @@
+.hero {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 640px;
+  max-height: 900px;
+  overflow: hidden;
+  color: #fff;
+  background: #000;
+  isolation: isolate;
+}
+
+.video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+}
+
+.scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background:
+    linear-gradient(to bottom, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0) 30%, rgba(0,0,0,0) 70%, rgba(0,0,0,0.55) 100%);
+  pointer-events: none;
+}
+
+.tagline {
+  position: absolute;
+  left: var(--grid-margin);
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  font-family: "LocomotiveNew", sans-serif;
+  font-size: var(--font-size-huge);
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  font-weight: 400;
+  color: #fff;
+  text-shadow: 0 2px 24px rgba(0,0,0,0.35);
+  pointer-events: none;
+  mix-blend-mode: difference;
+}
+
+.subtitle {
+  position: absolute;
+  left: var(--grid-margin);
+  bottom: var(--spacing-medium);
+  z-index: 3;
+  font-family: "HelveticaNowDisplay", sans-serif;
+  font-size: var(--font-size);
+  letter-spacing: 0.02em;
+  color: #fff;
+  text-shadow: 0 1px 12px rgba(0,0,0,0.4);
+  pointer-events: none;
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}
+
+@media (max-width: 699px) {
+  .hero { min-height: 520px; }
+  .tagline { font-size: 14vw; }
+}

@@ -1,0 +1,97 @@
+.summary {
+  position: relative;
+  font-size: var(--font-size-medium);
+  line-height: 1.2;
+  display: flex;
+  justify-content: center;
+  padding-top: var(--spacing-big);
+  padding-bottom: var(--spacing-big);
+}
+
+.label {
+  display: block;
+  position: absolute;
+  top: 0.5em;
+  right: 0;
+  font-size: var(--font-size-medium);
+  line-height: 1.2;
+}
+
+.inner {
+  position: relative;
+  text-align: center;
+}
+
+.text {
+  position: relative;
+  z-index: 10;
+  font-variant-numeric: tabular-nums;
+}
+.text span {
+  display: block;
+  z-index: 10;
+  position: relative;
+}
+
+.visual {
+  position: relative;
+  margin: 48px auto;
+  width: 320px;
+  height: 320px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.outerRing {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.innerRing {
+  position: absolute;
+  inset: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.center {
+  position: relative;
+  z-index: 5;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.centerLabel {
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+.centerYear {
+  font-family: "LocomotiveNew", sans-serif;
+  font-size: 56px;
+  line-height: 1;
+  margin-top: 4px;
+  font-variant-numeric: tabular-nums;
+}
+
+.footer {
+  position: relative;
+  display: block;
+}
+
+@media (max-width: 699px) {
+  .label {
+    position: relative;
+    width: auto;
+    padding-right: 0;
+    text-align: right;
+    margin-bottom: var(--spacing-medium);
+  }
+  .summary { flex-direction: column; }
+  .visual { width: 240px; height: 240px; }
+  .centerYear { font-size: 42px; }
+}

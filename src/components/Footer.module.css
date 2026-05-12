@@ -1,0 +1,119 @@
+.footer {
+  padding: var(--spacing-large) var(--grid-margin) var(--spacing-medium);
+  border-top: var(--border);
+  margin-top: var(--spacing-big);
+}
+
+.nav { margin-bottom: var(--spacing-large); }
+
+.menuList {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: var(--grid-gutter);
+}
+
+.menuTitle {
+  font-size: var(--font-size-medium);
+  line-height: 1.2;
+  font-weight: 400;
+  margin-bottom: var(--spacing-small);
+}
+
+.subList {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.menuItem {
+  font-size: var(--font-size-medium);
+  line-height: 1.2;
+}
+.menuLink {
+  display: inline-block;
+}
+.menuLink[data-icon]::after {
+  content: attr(data-icon);
+  margin-left: 0.3em;
+}
+.menuLink:hover {
+  text-decoration: underline solid var(--border-size);
+  text-underline-offset: 0.1em;
+}
+
+.menuMain { display: flex; flex-direction: column; }
+.menuMain .subList {
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 0 16px;
+}
+
+.statList {
+  font-variant-numeric: tabular-nums;
+}
+.statList .menuItem {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+  padding: 6px 0;
+}
+.statLabel {
+  font-size: 13px;
+  opacity: 0.6;
+  letter-spacing: 0.05em;
+}
+.statValue {
+  font-family: "LocomotiveNew", sans-serif;
+  font-size: 18px;
+}
+
+.menuCta {
+  display: flex;
+  gap: 24px;
+  margin-top: var(--spacing-small);
+  font-size: var(--font-size-medium);
+  line-height: 1.2;
+}
+.menuCta button {
+  background: none;
+  border: 0;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+  padding: 0;
+}
+.menuCta button:hover {
+  text-decoration: underline solid var(--border-size);
+}
+
+.contact {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: var(--grid-gutter);
+  font-size: var(--font-size-medium);
+  line-height: 1.2;
+  align-items: end;
+  border-top: var(--border);
+  padding-top: var(--spacing-medium);
+}
+.address {
+  display: block;
+}
+.line {
+  display: block;
+}
+.copy {
+  text-align: right;
+  justify-self: end;
+}
+
+@media (max-width: 1023px) {
+  .menuList { grid-template-columns: 1fr 1fr; gap: var(--spacing-medium) var(--grid-gutter); }
+  .menuMain { grid-column: 1 / -1; }
+  .contact { grid-template-columns: 1fr 1fr; gap: var(--spacing-small) var(--grid-gutter); }
+}
+
+@media (max-width: 699px) {
+  .menuList { grid-template-columns: 1fr; }
+  .contact { grid-template-columns: 1fr; align-items: start; }
+  .copy { text-align: left; justify-self: start; }
+}

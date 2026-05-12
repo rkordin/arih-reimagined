@@ -1,0 +1,237 @@
+.shell {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  padding-top: var(--header-height);
+  background: #0f0c08;
+  color: #f5f3ee;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+/* Giant rolling background text */
+.bgType {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+  font-family: "LocomotiveNew", sans-serif;
+  font-size: clamp(120px, 28vw, 480px);
+  line-height: 0.82;
+  letter-spacing: -0.04em;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(245, 243, 238, 0.07);
+  pointer-events: none;
+  user-select: none;
+  white-space: nowrap;
+}
+.bgType span {
+  display: block;
+  transform-origin: left center;
+  animation: scrollType 36s linear infinite;
+}
+.bgType span:nth-child(2) {
+  animation-direction: reverse;
+  animation-duration: 48s;
+  opacity: 0.7;
+  font-style: italic;
+}
+.bgType span:nth-child(3) {
+  animation-duration: 60s;
+  -webkit-text-stroke: 1px rgba(245, 243, 238, 0.04);
+}
+@keyframes scrollType {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.introCard {
+  position: relative;
+  z-index: 60;
+  padding: var(--spacing-medium) var(--grid-margin);
+  max-width: 540px;
+  mix-blend-mode: difference;
+}
+.smallLabel {
+  font-family: "LocomotiveNew", monospace;
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  opacity: 0.6;
+  display: block;
+  margin-bottom: var(--spacing-tiny);
+}
+.title {
+  font-family: "LocomotiveNew", sans-serif;
+  font-size: clamp(48px, 7vw, 110px);
+  line-height: 0.92;
+  letter-spacing: -0.02em;
+  font-weight: 400;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+.title span:nth-child(2) {
+  font-style: italic;
+  opacity: 0.78;
+  transform: translateX(0.5em);
+}
+.intro {
+  font-size: var(--font-size-medium);
+  line-height: 1.35;
+  opacity: 0.75;
+  margin: var(--spacing-tiny) 0 0 0;
+}
+
+/* Toolbar */
+.toolbar {
+  position: relative;
+  z-index: 60;
+  padding: var(--spacing-tiny) var(--grid-margin) var(--spacing-medium);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-tiny);
+  align-items: center;
+}
+.toolBtn,
+.filterBtn {
+  font-family: "LocomotiveNew", monospace;
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  padding: 0.75em 1.1em;
+  background: transparent;
+  border: 1px solid rgba(245, 243, 238, 0.32);
+  color: #f5f3ee;
+  cursor: pointer;
+  transition: background 0.18s ease, color 0.18s ease, border-color 0.18s ease;
+}
+.toolBtn:hover,
+.filterBtn:hover { background: #f5f3ee; color: #0f0c08; border-color: #f5f3ee; }
+
+.filterGroup {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-left: auto;
+}
+.filterActive {
+  background: #f5f3ee;
+  color: #0f0c08;
+  border-color: #f5f3ee;
+}
+
+/* Canvas */
+.canvas {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  height: calc(100vh - var(--header-height) - 120px);
+  min-height: 720px;
+  touch-action: none;
+  cursor: grab;
+}
+.canvas:active { cursor: grabbing; }
+
+.card {
+  position: absolute;
+  width: 180px;
+  height: 130px;
+  margin: -90px 0 0 -65px;
+  cursor: grab;
+  transition: filter 0.25s ease, opacity 0.25s ease;
+  will-change: transform;
+}
+.card:active { cursor: grabbing; }
+.card.active { filter: drop-shadow(0 22px 30px rgba(0, 0, 0, 0.45)); }
+.card.dimmed { opacity: 0.18; pointer-events: none; }
+
+.cardLink {
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  background: #1c1612;
+  border-radius: 4px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+.cardLink img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: saturate(0.85) contrast(0.96);
+  pointer-events: none;
+  transition: filter 0.25s ease;
+}
+.card:hover .cardLink img { filter: saturate(1.1) contrast(1.05); }
+
+.cardLabel {
+  position: absolute;
+  inset: auto 0 0 0;
+  padding: 8px 10px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0));
+  color: #fff;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 6px;
+  align-items: baseline;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.18s ease, transform 0.22s cubic-bezier(0.23, 1, 0.32, 1);
+  pointer-events: none;
+}
+.card:hover .cardLabel,
+.card.active .cardLabel {
+  opacity: 1;
+  transform: translateY(0);
+}
+.cardCat {
+  text-transform: uppercase;
+  opacity: 0.7;
+  font-family: "LocomotiveNew", monospace;
+}
+.cardTitle {
+  font-family: "LocomotiveNew", sans-serif;
+  font-size: 13px;
+  letter-spacing: 0;
+  text-transform: none;
+}
+.cardYear {
+  font-family: "LocomotiveNew", monospace;
+  font-variant-numeric: tabular-nums;
+  opacity: 0.7;
+}
+
+.hint {
+  position: absolute;
+  bottom: var(--spacing-medium);
+  left: var(--grid-margin);
+  right: var(--grid-margin);
+  z-index: 60;
+  display: flex;
+  justify-content: space-between;
+  font-family: "LocomotiveNew", monospace;
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+@media (max-width: 1023px) {
+  .card { width: 140px; height: 100px; margin: -50px 0 0 -70px; }
+  .canvas { min-height: 640px; }
+}
+@media (max-width: 699px) {
+  .card { width: 110px; height: 80px; margin: -40px 0 0 -55px; }
+  .filterGroup { margin-left: 0; width: 100%; }
+  .canvas { height: 70vh; min-height: 520px; }
+  .introCard { padding-bottom: var(--spacing-tiny); }
+}
