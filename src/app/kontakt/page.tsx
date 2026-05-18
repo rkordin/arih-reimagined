@@ -6,7 +6,7 @@ import styles from "./kontakt.module.css";
 
 export const metadata: Metadata = {
   title: "Kontakt · ARIH",
-  description: "Agencija Arih — Nazorjeva 6, 1000 Ljubljana. info@arih.si.",
+  description: "Agencija Arih — Celovška cesta 32, 1000 Ljubljana. info@arih.si.",
 };
 
 export default function KontaktPage() {
@@ -52,7 +52,7 @@ export default function KontaktPage() {
               <a href={`mailto:${contact.email}`}>{contact.email}</a>
             </h2>
             <p className={styles.body}>
-              <a href={`tel:${contact.phone.replace(/\s/g, "")}`}>{contact.phone}</a>
+              <a href={`tel:${contact.phoneE164}`}>{contact.phone}</a>
               <br />
               {contact.hours}
             </p>

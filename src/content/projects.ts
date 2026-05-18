@@ -30,13 +30,12 @@ export const PROJECTS: Project[] = [
     "shortTitle": "SUPERNOVA",
     "tagline": null,
     "description": "",
-    "cover": "https://images.squarespace-cdn.com/content/v1/5b892d3775f9ee54716f8e5b/1652868184185-3P0JLLQFC7XRQXNFH9OB/SF_05.jpg",
+    "cover": "https://images.squarespace-cdn.com/content/v1/5b892d3775f9ee54716f8e5b/ef87e2d6-87ac-43f4-bdfa-202889c4a46e/Supernova-Ljubljana-Rudnik-4_foto-arhiv-Supernove__ScaleMaxWidthWzE5MDBd.jpg",
     "images": [
-      "https://images.squarespace-cdn.com/content/v1/5b892d3775f9ee54716f8e5b/1652868184185-3P0JLLQFC7XRQXNFH9OB/SF_05.jpg",
       "https://images.squarespace-cdn.com/content/v1/5b892d3775f9ee54716f8e5b/ef87e2d6-87ac-43f4-bdfa-202889c4a46e/Supernova-Ljubljana-Rudnik-4_foto-arhiv-Supernove__ScaleMaxWidthWzE5MDBd.jpg",
       "https://images.squarespace-cdn.com/content/v1/5b892d3775f9ee54716f8e5b/8c5a2a80-290c-47af-b8a9-09358bb32eb4/Supernova-Ljubljana-Rudnik-1-1024x683.jpg"
     ],
-    "imagesCount": 3,
+    "imagesCount": 2,
     "href": "/cgp/2026/5/4/supernova"
   },
   {
@@ -179,10 +178,10 @@ export const PROJECTS: Project[] = [
     "category": "cgp",
     "year": 2022,
     "date": "2022-05-18",
-    "title": "Slovenska filharmonija",
-    "shortTitle": "Slovenska filharmonija",
+    "title": "Slovenska Filharmonija",
+    "shortTitle": "Slovenska Filharmonija",
     "tagline": "Magnifico",
-    "description": "Magnifico S ponosom predstavljamo prenovo celostne grafične podobe simbola visoke glasbene kulture na Slovenskem Slovenska filharmonija - Academia philharmonicorum .",
+    "description": "Magnifico S ponosom predstavljamo prenovo celostne grafične podobe simbola visoke glasbene kulture na Slovenskem Slovenska Filharmonija — Academia philharmonicorum.",
     "cover": "https://images.squarespace-cdn.com/content/v1/5b892d3775f9ee54716f8e5b/1652867769392-QFUQGSIB7SQCMM6580H6/SF_02.jpg",
     "images": [
       "https://images.squarespace-cdn.com/content/v1/5b892d3775f9ee54716f8e5b/1652867769392-QFUQGSIB7SQCMM6580H6/SF_02.jpg",

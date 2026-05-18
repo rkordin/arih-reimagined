@@ -48,7 +48,7 @@ export const featuredProjects: FeaturedArihProject[] = [
   {
     no: 3,
     title: "Slovenska Filharmonija",
-    parts: ["Filharmonija"],
+    parts: ["Slovenska", "Filharmonija"],
     href: "/cgp/slovenska-filharmonija",
     blurb: "Visual identity rooted in 1701 founding heritage",
     category: "CGP",
@@ -166,18 +166,19 @@ export const book = {
 export const announcements = [
   "Knjiga „Budi Voda“ je na voljo",
   "Razstava izbranih del agencije",
-  "Predavanja in delavnice na naslovu Nazorjeva 6",
+  "Predavanja in delavnice na naslovu Celovška cesta 32",
   "Sodelujemo z naročniki, ki delajo dolgoročno",
   "Iščemo nove sodelavce — pišite na info@arih.si",
 ];
 
 export const contact = {
-  street: "Nazorjeva 6",
+  street: "Celovška cesta 32",
   city: "1000 Ljubljana",
   country: "Slovenia",
-  phone: "+386 1 280 84 60",
+  phone: "01 434 17 24",
+  phoneE164: "+38614341724",
   email: "info@arih.si",
-  hours: "Mon–Fri 09:00–17:00 CET",
+  hours: "Pon–Pet 8.30–16.00",
 };
 
 /* Long-form copy — translated/adapted from arih.si */

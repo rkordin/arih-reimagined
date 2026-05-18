@@ -1,5 +1,5 @@
 import { HoverShuffle } from "./HoverShuffle";
-import { campaigns, publications, brand } from "@/content/arih";
+import { campaigns, publications, brand, contact } from "@/content/arih";
 import styles from "./Extras.module.css";
 
 export function Extras() {
@@ -49,10 +49,10 @@ export function Extras() {
       <SectionOverline title="Studio">
         <div className={styles.studioContent}>
           <p className={styles.studioPara}>
-            Visit us at <strong>{"Nazorjeva 6, Ljubljana"}</strong>. The studio is open
-            Monday through Friday, 9:00–17:00 CET. We work directly with founders and
-            creative directors — no account layer, just people who know your file as
-            well as you do.
+            Obiščite nas na <strong>{contact.street}, Ljubljana</strong>. Atelje je
+            odprt {contact.hours.toLowerCase()}. Sodelujemo neposredno z ustanovitelji
+            in kreativnimi direktorji — brez vmesnih plasti, samo z ljudmi, ki vašo
+            datoteko poznajo enako dobro kot vi.
           </p>
           <ul className="c-list -no-border-last-child">
             <li className="c-list_row">
