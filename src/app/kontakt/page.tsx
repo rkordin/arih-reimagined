@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
+import { Map } from "@/components/Map";
 import { contact, social, brand } from "@/content/arih";
 import styles from "./kontakt.module.css";
 
@@ -86,6 +87,8 @@ export default function KontaktPage() {
             </p>
           </article>
         </section>
+
+        <Map />
 
         <Footer />
       </main>

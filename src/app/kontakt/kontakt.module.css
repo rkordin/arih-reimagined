@@ -116,3 +116,98 @@
   .title { font-size: 14vw; }
   .cardTitle { font-size: 1.8rem; }
 }
+
+/* ============================================================
+   MAP
+   ============================================================ */
+.map {
+  position: relative;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  height: 70vh;
+  min-height: 520px;
+  background: #000;
+  overflow: hidden;
+  border-top: var(--border);
+}
+.mapCanvas { position: absolute; inset: 0; }
+.mapCanvas :global(.gm-style) button { font-family: inherit !important; }
+
+.mapFallback {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: var(--spacing-medium);
+  text-align: center;
+  color: #e8e8e8;
+  background: #000;
+  font-family: "HelveticaNowDisplay", sans-serif;
+  font-size: var(--font-size-medium);
+}
+.mapFallback a {
+  color: #be2026;
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+  font-family: "LocomotiveNew", monospace;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.mapOverlay {
+  position: absolute;
+  left: var(--grid-margin);
+  bottom: var(--grid-margin);
+  z-index: 2;
+  background: #111;
+  color: #fff;
+  padding: var(--spacing-small, 24px) calc(var(--spacing-small, 24px) + 4px);
+  max-width: 360px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+.mapOverlay .label { opacity: 0.55; }
+.mapAddress {
+  font-family: "LocomotiveNew", sans-serif;
+  font-size: 1.8rem;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  font-weight: 400;
+  margin: 0;
+}
+.mapCta {
+  font-family: "LocomotiveNew", monospace;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  align-self: flex-start;
+  padding: 0.7em 1em;
+  border: 1px solid #be2026;
+  background: #be2026;
+  color: #fff;
+  transition: background 0.18s ease, color 0.18s ease, border-color 0.18s ease;
+}
+.mapCta:hover { background: #fff; color: #be2026; border-color: #fff; }
+
+@media (max-width: 1023px) {
+  .map { height: 65vh; min-height: 480px; }
+}
+@media (max-width: 699px) {
+  .map { height: 75vh; min-height: 420px; }
+  .mapOverlay {
+    left: var(--grid-margin);
+    right: var(--grid-margin);
+    bottom: var(--grid-margin);
+    max-width: none;
+    padding: 20px;
+  }
+  .mapAddress { font-size: 1.4rem; }
+}
