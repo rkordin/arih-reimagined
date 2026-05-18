@@ -67,6 +67,21 @@ export function ProjectDetail({
         ))}
       </section>
 
+      {project.quote && (
+        <section className={styles.pullquote} data-scroll>
+          <blockquote className={styles.quoteBlock}>
+            <p>
+              <span aria-hidden="true" className={styles.quoteMark}>“</span>
+              {project.quote}
+              <span aria-hidden="true" className={styles.quoteMark}>”</span>
+            </p>
+            {project.quoteAttribution && (
+              <cite className={styles.quoteCite}>{project.quoteAttribution}</cite>
+            )}
+          </blockquote>
+        </section>
+      )}
+
       {project.description && (
         <section className={styles.description} data-scroll>
           <span className={styles.meta}>O projektu</span>

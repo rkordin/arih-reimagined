@@ -18,6 +18,10 @@ export type Project = {
   images: string[];
   imagesCount: number;
   href: string;
+  /** Optional pull-quote rendered above the description on the detail page.
+   *  When present, `quoteAttribution` is shown below the quote. */
+  quote?: string;
+  quoteAttribution?: string;
 };
 
 export const PROJECTS: Project[] = [
@@ -181,7 +185,9 @@ export const PROJECTS: Project[] = [
     "title": "Slovenska Filharmonija",
     "shortTitle": "Slovenska Filharmonija",
     "tagline": "Magnifico",
-    "description": "Magnifico S ponosom predstavljamo prenovo celostne grafične podobe simbola visoke glasbene kulture na Slovenskem Slovenska Filharmonija — Academia philharmonicorum.",
+    "description": "S ponosom predstavljamo prenovo celostne grafične podobe simbola visoke glasbene kulture na Slovenskem Slovenska Filharmonija — Academia philharmonicorum.",
+    "quote": "Glasbeniki so angeli na zemlji, ki gradijo mostove do rajskih svetov",
+    "quoteAttribution": "Magnifico",
     "cover": "https://images.squarespace-cdn.com/content/v1/5b892d3775f9ee54716f8e5b/1652867769392-QFUQGSIB7SQCMM6580H6/SF_02.jpg",
     "images": [
       "https://images.squarespace-cdn.com/content/v1/5b892d3775f9ee54716f8e5b/1652867769392-QFUQGSIB7SQCMM6580H6/SF_02.jpg",
