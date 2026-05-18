@@ -1,3 +1,8 @@
+/* ============================================================
+   Background bar — always present, opacity controlled by scroll.
+   When over the home hero, fades out so the header text uses
+   mix-blend-mode: difference against the video. Otherwise solid.
+   ============================================================ */
 .bg {
   position: fixed;
   top: 0;
@@ -5,17 +10,22 @@
   width: 100%;
   height: var(--header-height);
   background-color: var(--color-bg);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
   z-index: 740;
   opacity: 1;
   transition:
     background-color 0.3s cubic-bezier(0.215, 0.61, 0.355, 1),
-    opacity 0.2s cubic-bezier(0.215, 0.61, 0.355, 1);
+    opacity 0.2s cubic-bezier(0.215, 0.61, 0.355, 1),
+    border-color 0.2s ease;
 }
 
 :global(html.is-over-home-hero) .bg {
   opacity: 0;
 }
 
+/* ============================================================
+   Header bar
+   ============================================================ */
 .header {
   position: fixed;
   top: 0;
@@ -30,13 +40,18 @@
   justify-content: space-between;
   gap: 1rem;
   padding: 0 var(--grid-margin);
-  color: #ffffff;
-  mix-blend-mode: difference;
-  transition: transform 0.2s cubic-bezier(0.215, 0.61, 0.355, 1);
+  color: var(--color);
+  transition: color 0.2s ease, transform 0.2s cubic-bezier(0.215, 0.61, 0.355, 1);
   pointer-events: none;
 }
 .header > * {
   pointer-events: auto;
+}
+
+/* Over the home hero, invert text against the video using difference */
+:global(html.is-over-home-hero) .header {
+  color: #ffffff;
+  mix-blend-mode: difference;
 }
 
 .logo {
@@ -80,14 +95,115 @@
 .toggler {
   display: none;
   background: none;
-  border: 0;
+  border: 1px solid currentColor;
   color: inherit;
   font: inherit;
   cursor: pointer;
-  padding: 0.6em 0.8em;
-  font-size: var(--font-size-medium);
+  padding: 0.45em 0.9em;
+  font-size: var(--font-size);
+  letter-spacing: 0.02em;
+  border-radius: 999px;
+  -webkit-tap-highlight-color: transparent;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+.toggler:active {
+  background-color: currentColor;
+}
+.toggler:active > * {
+  mix-blend-mode: difference;
 }
 
+/* ============================================================
+   Mobile dropdown panel
+   ============================================================ */
+.mobilePanel {
+  position: fixed;
+  top: var(--header-height);
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--color-bg);
+  color: var(--color);
+  z-index: 760;
+  padding: var(--spacing-medium) var(--grid-margin) var(--spacing-large);
+  overflow-y: auto;
+  transform: translateY(-8px);
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+  transition:
+    transform 0.28s cubic-bezier(0.215, 0.61, 0.355, 1),
+    opacity 0.22s cubic-bezier(0.215, 0.61, 0.355, 1),
+    visibility 0s linear 0.28s;
+}
+.mobilePanelOpen {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+  visibility: visible;
+  transition:
+    transform 0.32s cubic-bezier(0.215, 0.61, 0.355, 1),
+    opacity 0.22s cubic-bezier(0.215, 0.61, 0.355, 1),
+    visibility 0s linear 0s;
+}
+
+/* When menu is open, force the header's color/blend to readable defaults
+   even if the user happens to be over the home hero. */
+.headerOpen .header,
+:global(html.is-mobile-menu-open) .header {
+  color: var(--color) !important;
+  mix-blend-mode: normal !important;
+}
+.headerOpen .bg,
+:global(html.is-mobile-menu-open) .bg {
+  opacity: 1 !important;
+}
+
+.mobileList {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  gap: 0;
+}
+.mobileLink {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 18px 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
+  text-decoration: none;
+  color: inherit;
+}
+.mobileList li:last-child .mobileLink {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+.mobileLinkLabel {
+  font-family: "LocomotiveNew", sans-serif;
+  font-size: clamp(28px, 7vw, 42px);
+  line-height: 1;
+  letter-spacing: -0.01em;
+}
+.mobileLinkDesc {
+  font-family: "LocomotiveNew", monospace;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  opacity: 0.5;
+  text-align: right;
+  flex-shrink: 1;
+  min-width: 0;
+}
+.mobileLinkCta .mobileLinkLabel {
+  text-decoration: underline solid var(--border-size);
+  text-underline-offset: 0.16em;
+}
+
+/* ============================================================
+   Breakpoints
+   ============================================================ */
 @media (max-width: 1279px) {
   .menuList { gap: 1rem; }
 }
@@ -98,6 +214,13 @@
     display: none;
   }
   .toggler {
-    display: block;
+    display: inline-flex;
+    align-items: center;
+  }
+}
+
+@media (min-width: 1024px) {
+  .mobilePanel {
+    display: none;
   }
 }

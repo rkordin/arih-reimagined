@@ -32,7 +32,7 @@ export default function RootLayout({
       data-template="home"
       data-theme="arih"
       data-scroll-orientation="vertical"
-      className="lenis is-top is-over-home-hero is-loaded is-ready"
+      className="lenis is-top"
     >
       <body>
         <LenisScroll />

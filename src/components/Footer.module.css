@@ -8,8 +8,9 @@
 
 .menuList {
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
   gap: var(--grid-gutter);
+  max-width: 720px;
 }
 
 .menuTitle {
@@ -107,8 +108,7 @@
 }
 
 @media (max-width: 1023px) {
-  .menuList { grid-template-columns: 1fr 1fr; gap: var(--spacing-medium) var(--grid-gutter); }
-  .menuMain { grid-column: 1 / -1; }
+  .menuList { grid-template-columns: 1fr 1fr; gap: var(--spacing-medium) var(--grid-gutter); max-width: 100%; }
   .contact { grid-template-columns: 1fr 1fr; gap: var(--spacing-small) var(--grid-gutter); }
 }
 

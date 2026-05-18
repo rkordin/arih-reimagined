@@ -1,52 +1,16 @@
-import Link from "next/link";
 import { HoverShuffle } from "./HoverShuffle";
 import { CountingNumber, SpinningNumber } from "./RotatingNumber";
-import { contact, social, navLinks, brand } from "@/content/arih";
+import { contact, social, brand } from "@/content/arih";
 import styles from "./Footer.module.css";
 
 export function Footer() {
   const today = new Date();
+  const mapsQuery = encodeURIComponent(`${contact.street}, ${contact.city}, ${contact.country}`);
+
   return (
     <footer className={`c-footer ${styles.footer}`}>
       <nav className={styles.nav} aria-label="Footer">
         <ul className={styles.menuList}>
-          <li className={styles.menuMain}>
-            <h2 className={styles.menuTitle}>Meni</h2>
-            <ul className={styles.subList}>
-              {navLinks.map((m) => (
-                <li key={m.label} className={styles.menuItem}>
-                  <Link href={m.href} className={styles.menuLink}>
-                    <HoverShuffle text={m.label} />
-                  </Link>
-                </li>
-              ))}
-              <li className={styles.menuItem}>
-                <Link href="/kontakt" className={styles.menuLink}>
-                  <HoverShuffle text="Kontakt" />
-                </Link>
-              </li>
-              <li className={styles.menuItem}>
-                <Link href="/priznanja" className={styles.menuLink}>
-                  <HoverShuffle text="Priznanja" />
-                </Link>
-              </li>
-              <li className={styles.menuItem}>
-                <Link href="/publikacije" className={styles.menuLink}>
-                  <HoverShuffle text="Publikacije" />
-                </Link>
-              </li>
-            </ul>
-            <div className={styles.menuCta}>
-              <button type="button">
-                <HoverShuffle text="Privacy" />
-              </button>
-              <button type="button">
-                <HoverShuffle text="Newsletter" />
-                <span aria-hidden="true"> ↓</span>
-              </button>
-            </div>
-          </li>
-
           <li className={styles.menuCol}>
             <h2 className={styles.menuTitle}>Social</h2>
             <ul className={styles.subList}>
@@ -100,7 +64,7 @@ export function Footer() {
 
       <div className={styles.contact}>
         <a
-          href="https://maps.google.com/?q=Nazorjeva+6+Ljubljana"
+          href={`https://maps.google.com/?q=${mapsQuery}`}
           target="_blank"
           rel="noopener noreferrer"
           className={styles.address}
@@ -109,8 +73,8 @@ export function Footer() {
           <br />
           {contact.city}, {contact.country}
         </a>
-        <a href={`tel:${contact.phone.replace(/\s/g, "")}`} className={styles.line}>
-          <span>Telephone </span>
+        <a href={`tel:${contact.phoneE164}`} className={styles.line}>
+          <span>Telefon </span>
           <span>{contact.phone}</span>
         </a>
         <a href={`mailto:${contact.email}`} className={styles.line}>

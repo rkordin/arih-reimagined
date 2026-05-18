@@ -31,7 +31,10 @@ export function LenisScroll() {
 
     lenis.on("scroll", onScroll);
 
-    // observe the hero — toggle is-over-home-hero
+    // observe the hero — toggle is-over-home-hero. If no hero on this page,
+    // make sure the class is cleared (it might have been left over from a
+    // prior client-side navigation, since route changes don't re-render
+    // <html> classes).
     const hero =
       document.querySelector(".c-home-hero") || document.querySelector("[data-home-hero]");
     let io: IntersectionObserver | null = null;
@@ -47,6 +50,8 @@ export function LenisScroll() {
         { threshold: [0, 0.05, 0.5, 1] }
       );
       io.observe(hero);
+    } else {
+      html.classList.remove("is-over-home-hero");
     }
 
     // inview observer — adds .is-inview to any [data-scroll] element when it enters
@@ -74,6 +79,7 @@ export function LenisScroll() {
       lenis.destroy();
       io?.disconnect();
       inviewObserver.disconnect();
+      html.classList.remove("is-over-home-hero");
     };
   }, []);
 
