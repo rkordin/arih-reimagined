@@ -47,16 +47,21 @@ declare global {
 
 const loadGoogleMaps = (apiKey: string): Promise<GMaps> => {
   if (typeof window === "undefined") return Promise.reject(new Error("no-window"));
-  if (window.google?.maps) return Promise.resolve(window.google.maps);
+  if (window.google?.maps?.Map) return Promise.resolve(window.google.maps);
   if (window.__gmapsLoader) return window.__gmapsLoader;
   window.__gmapsLoader = new Promise((resolve, reject) => {
     const script = document.createElement("script");
-    script.src = `https://maps.googleapis.com/maps/api/js?key=${encodeURIComponent(apiKey)}&v=quarterly&loading=async`;
+    script.src = `https://maps.googleapis.com/maps/api/js?key=${encodeURIComponent(apiKey)}&v=quarterly&loading=async&callback=__gmapsCallback`;
     script.async = true;
     script.defer = true;
-    script.onload = () => {
-      if (window.google?.maps) resolve(window.google.maps);
-      else reject(new Error("gmaps-no-global"));
+    (window as unknown as Record<string, () => void>).__gmapsCallback = async () => {
+      try {
+        await window.google!.maps.importLibrary("maps");
+        await window.google!.maps.importLibrary("marker");
+        resolve(window.google!.maps);
+      } catch {
+        reject(new Error("gmaps-import-failed"));
+      }
     };
     script.onerror = () => reject(new Error("gmaps-load-failed"));
     document.head.appendChild(script);
