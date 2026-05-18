@@ -99,6 +99,10 @@ html {
   text-rendering: optimizeLegibility;
   background-color: var(--color-bg);
   color: var(--color);
+  /* Defensive guardrail: never let any stray wide element introduce a
+     horizontal scroll. `clip` (vs `hidden`) doesn't create a containing
+     block for `position: fixed`, so the navbar still tracks the viewport. */
+  overflow-x: clip;
 }
 
 body {

@@ -81,10 +81,12 @@
   transition: width var(--transition-speed-leave) var(--transition-easing);
   pointer-events: none;
 }
-.item:hover .visual,
-.item:focus-within .visual {
-  width: 1.5em;
-  transition-duration: var(--transition-speed-enter);
+@media (hover: hover) {
+  .item:hover .visual,
+  .item:focus-within .visual {
+    width: 1.5em;
+    transition-duration: var(--transition-speed-enter);
+  }
 }
 
 .visualInner {
@@ -123,6 +125,18 @@
 
 @media (max-width: 699px) {
   .category { display: none; }
-  .badge { width: 40px; }
-  .item { gap: 12px; }
+  /* Constrain the badge container AND scale the spinner inside down to fit
+     so it doesn't bleed into the title text. */
+  .badge { width: 56px; flex-shrink: 0; overflow: visible; }
+  .badge > span { font-size: 36px !important; }
+  .item { gap: 14px; min-width: 0; overflow: hidden; padding: 1rem 0; }
+  .title {
+    flex-wrap: wrap;
+    min-width: 0;
+    text-align: left;
+    justify-content: flex-start;
+    font-size: clamp(26px, 8vw, 36px);
+  }
+  .title > span,
+  .title > div { min-width: 0; }
 }

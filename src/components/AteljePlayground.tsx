@@ -118,8 +118,12 @@ export function AteljePlayground() {
     dragState.current = null;
   };
 
-  // Subtle parallax based on mouse position
+  // Subtle parallax based on mouse position. Skip entirely on touch /
+  // small screens — the canvas becomes a grid there and parallax has
+  // no visual effect, but the listener would still cause re-renders.
   useEffect(() => {
+    if (typeof window === "undefined") return;
+    if (!window.matchMedia("(hover: hover) and (min-width: 700px)").matches) return;
     const onMove = (e: PointerEvent) => {
       if (dragState.current) return;
       const w = window.innerWidth;

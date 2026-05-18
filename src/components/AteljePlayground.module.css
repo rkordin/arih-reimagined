@@ -225,13 +225,81 @@
   pointer-events: none;
 }
 
-@media (max-width: 1023px) {
+@media (max-width: 1023px) and (min-width: 700px) {
   .card { width: 140px; height: 100px; margin: -50px 0 0 -70px; }
   .canvas { min-height: 640px; }
 }
+
+/* =========================================================
+   MOBILE — replace draggable canvas with a clean tap grid.
+   The desktop pointer/drag logic still runs but produces no
+   visual effect since cards are pinned to grid cells.
+   ========================================================= */
 @media (max-width: 699px) {
-  .card { width: 110px; height: 80px; margin: -40px 0 0 -55px; }
-  .filterGroup { margin-left: 0; width: 100%; }
-  .canvas { height: 70vh; min-height: 520px; }
-  .introCard { padding-bottom: var(--spacing-tiny); }
+  .shell {
+    padding-top: var(--header-height);
+    overflow: visible;
+  }
+  .bgType { display: none; }
+
+  .introCard {
+    mix-blend-mode: normal;
+    padding: var(--spacing-medium) var(--grid-margin) var(--spacing-small);
+  }
+  .title { font-size: clamp(40px, 11vw, 64px); }
+  .title span:nth-child(2) { transform: none; }
+  .intro { font-size: 16px; }
+
+  .toolbar {
+    padding: 0 var(--grid-margin) var(--spacing-tiny);
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  /* Hide drag-affordance buttons; they have no meaning on a grid */
+  .toolBtn { display: none; }
+  .filterGroup {
+    margin-left: 0;
+    width: 100%;
+    gap: 6px;
+  }
+  .filterBtn {
+    padding: 0.55em 0.8em;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+  }
+
+  .canvas {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    padding: 0 var(--grid-margin) var(--spacing-large);
+    height: auto !important;
+    min-height: 0 !important;
+    width: 100%;
+    touch-action: auto;
+    cursor: auto;
+  }
+  .canvas:active { cursor: auto; }
+
+  /* Reset the absolutely-positioned card to a tile in the grid */
+  .card {
+    position: relative !important;
+    width: 100% !important;
+    height: auto !important;
+    margin: 0 !important;
+    left: auto !important;
+    top: auto !important;
+    transform: none !important;
+    aspect-ratio: 3 / 2;
+    cursor: pointer !important;
+    z-index: auto !important;
+  }
+  .card.dimmed { display: none; }
+  .cardLabel {
+    opacity: 1;
+    transform: none;
+  }
+
+  .hint { display: none; }
 }

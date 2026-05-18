@@ -100,7 +100,13 @@
   transition: width 0.45s cubic-bezier(0.23, 1, 0.32, 1);
   flex-shrink: 0;
 }
-.row:hover .preview { width: 2.2em; }
+@media (hover: hover) {
+  .row:hover .preview { width: 2.2em; }
+}
+/* Touch / no-hover: always show the small thumbnail so the image is reachable */
+@media (hover: none) {
+  .preview { width: 2.2em; }
+}
 .preview img {
   display: block;
   width: 100%;
@@ -123,24 +129,32 @@
   z-index: 1;
 }
 
-/* Hover image: fixed-position large preview that follows pointer */
+/* Hover image: fixed-position large preview that follows pointer.
+   Desktop only — on touch devices the small inline thumbnail (.preview)
+   covers the same need without obscuring the list. */
 .hoverImage {
-  position: fixed;
-  pointer-events: none;
-  width: 360px;
-  height: 240px;
-  background-size: cover;
-  background-position: center;
-  z-index: 1000;
-  opacity: 0;
-  transform: translate(-50%, -50%) scale(0.92);
-  transition: opacity 0.2s ease, transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-  border-radius: 6px;
-  box-shadow: 0 14px 40px rgba(0,0,0,0.18);
+  display: none;
 }
-.hoverImage.active {
-  opacity: 1;
-  transform: translate(-50%, -50%) scale(1);
+@media (hover: hover) and (min-width: 1024px) {
+  .hoverImage {
+    display: block;
+    position: fixed;
+    pointer-events: none;
+    width: 360px;
+    height: 240px;
+    background-size: cover;
+    background-position: center;
+    z-index: 1000;
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.92);
+    transition: opacity 0.2s ease, transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    border-radius: 6px;
+    box-shadow: 0 14px 40px rgba(0,0,0,0.18);
+  }
+  .hoverImage.active {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
 }
 
 @media (max-width: 1023px) {

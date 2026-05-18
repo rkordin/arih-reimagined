@@ -1,5 +1,5 @@
 .intro {
-  padding: var(--spacing-big) var(--grid-margin) var(--spacing-large);
+  padding: calc(var(--header-height) + var(--spacing-large)) var(--grid-margin) var(--spacing-medium);
   display: grid;
   grid-template-columns: 1fr auto;
   align-items: flex-end;
@@ -91,7 +91,12 @@
   transition: width 0.45s cubic-bezier(0.23, 1, 0.32, 1);
   flex-shrink: 0;
 }
-.item:hover .thumb { width: 1.6em; }
+@media (hover: hover) {
+  .item:hover .thumb { width: 1.6em; }
+}
+@media (hover: none) {
+  .thumb { width: 1.6em; }
+}
 .thumb img {
   display: block;
   width: 100%;
